@@ -55,11 +55,11 @@ export const projects = [
     visual: "audio",
   },
   {
-    name: "Android App Development using Generative AI",
-    tech: ["Android Development", "Generative AI"],
-    desc: "An Android application built during the Mindmatrix virtual internship, using Generative AI tools within the Android app development workflow.",
-    features: ["Built in the Mindmatrix internship", "Generative AI–assisted workflow", "Android application development"],
-    link: "https://github.com/Lavanyashekhar",
+    name: "Kutira-Kone",
+    tech: ["Kotlin", "Jetpack Compose", "Firebase", "Gemini AI", "Google Maps SDK"],
+    desc: "A GenAI-powered Android app that cuts textile waste by connecting tailors, boutique owners, artisans and crafters through a hyper-local fabric scrap exchange marketplace.",
+    features: ["Upload and list fabric scraps to swap, give away or sell", "Gemini AI fabric classification and upcycling ideas", "Radius-based discovery on Google Maps (1–25 km)", "In-app buyer–seller chat and trade notifications"],
+    link: "https://github.com/Lavanyashekhar/Kutira-Kone",
     visual: "phone",
   },
 ] as const;
