@@ -9,6 +9,7 @@ import {
 } from "@/data/portfolio";
 import photo from "@/assets/lavanya.png.asset.json";
 import { GithubIcon, LinkedinIcon } from "@/components/portfolio/icons";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,7 +30,7 @@ const resumeHref = profile.resume || profile.linkedin;
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background font-sans">
+    <div className="portfolio min-h-screen bg-background font-sans">
       <Header />
       <main>
         <Hero />
@@ -70,9 +71,9 @@ function Header() {
           <a href={resumeHref} download={profile.resumeFileName} className="hidden items-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-elegant transition-transform hover:-translate-y-0.5 sm:inline-flex">
             <Download className="size-4" /> Resume
           </a>
-          <button onClick={() => setOpen(!open)} className="rounded-full p-2 text-heading hover:bg-accent lg:hidden" aria-label="Toggle menu">
+          <Button variant="ghost" size="icon" onClick={() => setOpen(!open)} className="text-heading lg:hidden" aria-label="Toggle menu" aria-expanded={open}>
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
+          </Button>
         </div>
       </div>
       {open && (
@@ -94,7 +95,8 @@ function Typing() {
   const [text, setText] = useState("");
   const [del, setDel] = useState(false);
   useEffect(() => {
-    const word = profile.roles[i % profile.roles.length]!;
+    const word = profile.roles[i % profile.roles.length];
+    if (!word) return;
     const t = setTimeout(() => {
       if (!del && text === word) return setDel(true);
       if (del && text === "") { setDel(false); setI(i + 1); return; }
@@ -109,14 +111,14 @@ function Typing() {
 
 function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden bg-gradient-hero">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 md:py-24 lg:grid-cols-[1.15fr_1fr]">
+    <section id="home" className="relative overflow-hidden bg-background">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-12 md:py-14 lg:grid-cols-[1.3fr_1fr]">
         <div className="animate-fade-up">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-sm font-medium text-primary shadow-soft">
             <span className="size-2 rounded-full bg-primary" /> Open to entry-level roles · 2026 graduate
           </span>
           <p className="mt-6 text-lg font-semibold text-heading">Hello, I'm</p>
-          <h1 className="mt-1 text-5xl font-extrabold leading-[1.05] tracking-tight md:text-7xl">Lavanya A</h1>
+          <h1 className="mt-1 text-5xl font-extrabold leading-[1.1] md:text-7xl">Lavanya A<span className="text-primary">.</span></h1>
           <p className="mt-4 text-2xl font-bold text-heading md:text-3xl">{profile.title}</p>
           <p className="mt-2 h-9 text-xl font-semibold md:text-2xl"><Typing /></p>
           <p className="mt-5 max-w-xl text-lg leading-relaxed">{profile.intro}</p>
@@ -133,16 +135,15 @@ function Hero() {
             </div>
           </div>
         </div>
-        <div className="relative mx-auto w-full max-w-md animate-fade-up [animation-delay:150ms]">
-          <div className="absolute -inset-4 rotate-3 rounded-[2.5rem] bg-gradient-primary opacity-90" />
-          <div className="relative flex aspect-[4/5] items-end justify-center overflow-hidden rounded-[2rem] border-4 border-background bg-accent shadow-elegant">
+        <div className="relative mx-auto w-full max-w-sm animate-fade-up [animation-delay:150ms]">
+          <div className="relative flex aspect-[4/5] items-end justify-center overflow-hidden rounded-lg border border-border bg-accent shadow-soft">
             <img src={photo.url} alt="Lavanya A, Software Developer" className="absolute inset-0 size-full object-cover" />
           </div>
-          <div className="absolute -left-6 top-10 hidden rounded-2xl border border-border bg-background p-3 shadow-soft sm:flex sm:items-center sm:gap-3">
+          <div className="absolute -left-4 bottom-5 hidden rounded-lg border border-border bg-card p-3 shadow-soft sm:flex sm:items-center sm:gap-3">
             <span className="rounded-xl bg-accent p-2 text-primary"><GraduationCap className="size-5" /></span>
             <div><p className="font-display font-bold text-heading">8.51 CGPA</p><p className="text-xs text-muted-foreground">B.E. CSE</p></div>
           </div>
-          <div className="absolute -right-4 bottom-12 hidden rounded-2xl border border-border bg-background p-3 shadow-soft sm:flex sm:items-center sm:gap-3">
+          <div className="absolute -right-4 top-5 hidden rounded-lg border border-border bg-card p-3 shadow-soft sm:flex sm:items-center sm:gap-3">
             <span className="rounded-xl bg-accent p-2 text-primary"><FileText className="size-5" /></span>
             <div><p className="font-display font-bold text-heading">Published</p><p className="text-xs text-muted-foreground">JETIR research</p></div>
           </div>
@@ -281,7 +282,7 @@ function Internships() {
 
 function ProjectVisual({ kind }: { kind: "audio" | "phone" | "chart" }) {
   return (
-    <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-primary">
+    <div className="project-visual relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-border">
       <div className="absolute inset-0 bg-gradient-hero opacity-60" />
       {kind === "audio" ? (
         <div className="relative flex items-end gap-1.5">
@@ -449,9 +450,9 @@ function Contact() {
           </div>
           <div className="mt-4"><Field label="Subject" error={errors.subject}><input className={field} value={v.subject} onChange={(e) => setV({ ...v, subject: e.target.value })} /></Field></div>
           <div className="mt-4"><Field label="Message" error={errors.message}><textarea rows={5} className={field} value={v.message} onChange={(e) => setV({ ...v, message: e.target.value })} /></Field></div>
-          <button type="submit" className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-primary px-6 py-3 font-semibold text-primary-foreground shadow-elegant transition-transform hover:-translate-y-0.5">
+          <Button type="submit" size="lg" className="mt-6 w-full font-semibold">
             <Send className="size-4" /> Send Message
-          </button>
+          </Button>
           {status === "ok" && <p role="status" className="mt-4 rounded-xl bg-accent p-3 text-sm font-medium text-accent-foreground">Thanks! Your email app has opened with the message ready to send.</p>}
           {status === "err" && <p role="alert" className="mt-4 rounded-xl bg-destructive/10 p-3 text-sm font-medium text-destructive">Please fix the highlighted fields and try again.</p>}
         </form>
@@ -472,22 +473,22 @@ function Field({ label, error, children }: { label: string; error?: string | und
 
 function Footer() {
   return (
-    <footer className="bg-heading text-primary-foreground">
+    <footer className="border-t border-border bg-secondary text-foreground">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-3">
         <div>
-          <p className="font-display text-2xl font-extrabold text-primary-foreground">Lavanya A</p>
-          <p className="mt-1 text-primary-foreground/70">Software Developer</p>
-          <a href={`mailto:${profile.email}`} className="mt-4 inline-flex items-center gap-2 text-primary-foreground/80 hover:text-primary-foreground"><Mail className="size-4" />{profile.email}</a>
+          <p className="font-display text-2xl font-extrabold text-heading">Lavanya A<span className="text-primary">.</span></p>
+          <p className="mt-1 text-muted-foreground">Software Developer</p>
+          <a href={`mailto:${profile.email}`} className="mt-4 inline-flex items-center gap-2 text-foreground hover:text-primary"><Mail className="size-4" />{profile.email}</a>
         </div>
         <nav className="grid grid-cols-3 gap-2 text-sm" aria-label="Footer">
-          {nav.map((n) => <a key={n} href={`#${id(n)}`} className="text-primary-foreground/70 hover:text-primary-foreground">{n}</a>)}
+          {nav.map((n) => <a key={n} href={`#${id(n)}`} className="text-muted-foreground hover:text-primary">{n}</a>)}
         </nav>
         <div className="flex gap-3 md:justify-end">
-          <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="h-fit rounded-full bg-primary-foreground/10 p-3 hover:bg-primary"><LinkedinIcon /></a>
-          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="h-fit rounded-full bg-primary-foreground/10 p-3 hover:bg-primary"><GithubIcon /></a>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="h-fit rounded-full border border-border p-3 hover:text-primary"><LinkedinIcon /></a>
+          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="h-fit rounded-full border border-border p-3 hover:text-primary"><GithubIcon /></a>
         </div>
       </div>
-      <p className="border-t border-primary-foreground/10 py-5 text-center text-sm text-primary-foreground/60">© {new Date().getFullYear()} Lavanya A. All rights reserved.</p>
+      <p className="border-t border-border py-5 text-center text-sm text-muted-foreground">© {new Date().getFullYear()} Lavanya A. All rights reserved.</p>
     </footer>
   );
 }
