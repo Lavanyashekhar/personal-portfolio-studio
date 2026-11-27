@@ -45,7 +45,16 @@ export const internships = [
   { role: "Python Programming", org: "InternPe", desc: "Python fundamentals, data structures, functions, file handling, OOP, and practical mini-project assignments.", tags: ["Python", "OOP", "Data Structures"] },
 ];
 
-export const projects = [
+export type Project = {
+  name: string;
+  tech: readonly string[];
+  desc: string;
+  features: readonly string[];
+  link?: string;
+  visual: "audio" | "phone" | "chart";
+};
+
+export const projects: readonly Project[] = [
   {
     name: "Emotion-Based Music Recommendation System",
     tech: ["Python", "Machine Learning", "React", "Vite", "Audio Processing"],
@@ -62,7 +71,19 @@ export const projects = [
     link: "https://github.com/Lavanyashekhar/Kutira-Kone",
     visual: "phone",
   },
-] as const;
+  {
+    name: "Data Analytics Case Studies",
+    tech: ["Power BI", "Advanced Excel", "SQL", "Python"],
+    desc: "Business case studies solved during the Mindcreative School data analytics course, turning retail, healthcare, HR and e-commerce data into interactive Power BI dashboards and presentation-ready insight decks.",
+    features: [
+      "Six case studies: RetailMart, Hospital Patient Analytics, HR Analytics, E-commerce, BrightFuture Student, Sales Analytics",
+      "Interactive Power BI dashboards built for each case study",
+      "Insights presented through PowerPoint decks",
+      "Completed as part of the Mindcreative School data analytics course",
+    ],
+    visual: "chart",
+  },
+];
 
 export const certifications = [
   { name: "Data Analytics Course", issuer: "Mindcreative School", note: "2 months" },

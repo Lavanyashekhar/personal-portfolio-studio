@@ -279,7 +279,7 @@ function Internships() {
   );
 }
 
-function ProjectVisual({ kind }: { kind: "audio" | "phone" }) {
+function ProjectVisual({ kind }: { kind: "audio" | "phone" | "chart" }) {
   return (
     <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-primary">
       <div className="absolute inset-0 bg-gradient-hero opacity-60" />
@@ -289,6 +289,24 @@ function ProjectVisual({ kind }: { kind: "audio" | "phone" }) {
             <span key={i} className="w-3 rounded-full bg-primary-foreground/80 transition-all duration-500 group-hover:opacity-100" style={{ height: `${h}px` }} />
           ))}
           <Music className="absolute -top-14 left-1/2 size-10 -translate-x-1/2 text-primary-foreground" />
+        </div>
+      ) : kind === "chart" ? (
+        <div className="relative w-56 rounded-2xl border-4 border-primary-foreground/80 bg-background/15 p-3 transition-transform duration-500 group-hover:-translate-y-1">
+          <div className="flex items-center gap-2">
+            <BarChart3 className="size-5 text-primary-foreground" />
+            <div className="h-1.5 w-16 rounded bg-primary-foreground/60" />
+            <div className="ml-auto h-1.5 w-8 rounded bg-primary-foreground/40" />
+          </div>
+          <div className="mt-3 flex items-end gap-1.5">
+            {[40, 70, 55, 90, 60, 80, 45, 95].map((h, i) => (
+              <span key={i} className="flex-1 rounded-t bg-primary-foreground/75" style={{ height: `${h * 0.6}px` }} />
+            ))}
+          </div>
+          <div className="mt-3 grid grid-cols-3 gap-1.5">
+            <div className="h-6 rounded bg-primary-foreground/35" />
+            <div className="h-6 rounded bg-primary-foreground/25" />
+            <div className="h-6 rounded bg-primary-foreground/45" />
+          </div>
         </div>
       ) : (
         <div className="relative h-44 w-24 rounded-[1.25rem] border-4 border-primary-foreground/80 bg-background/15 p-2 transition-transform duration-500 group-hover:-rotate-6">
@@ -305,22 +323,28 @@ function ProjectVisual({ kind }: { kind: "audio" | "phone" }) {
 function Projects() {
   return (
     <Section id="projects" eyebrow="Featured Work" title="Projects I'm proud of" alt>
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p) => (
-          <article key={p.name} className="group card-lift overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
+          <article key={p.name} className="group card-lift flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
             <ProjectVisual kind={p.visual} />
-            <div className="p-7">
+            <div className="flex flex-1 flex-col p-7">
               <div className="flex flex-wrap gap-2">
                 {p.tech.map((t) => <span key={t} className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">{t}</span>)}
               </div>
               <h3 className="mt-4 text-2xl font-bold">{p.name}</h3>
               <p className="mt-3 leading-relaxed">{p.desc}</p>
-              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+              <ul className="mt-4 grid gap-2">
                 {p.features.map((f) => <li key={f} className="flex gap-2 text-sm"><CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />{f}</li>)}
               </ul>
-              <a href={p.link} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-elegant transition-transform hover:-translate-y-0.5">
-                <GithubIcon className="size-4" /> View Project
-              </a>
+              {p.link ? (
+                <a href={p.link} target="_blank" rel="noreferrer" className="mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-elegant transition-transform hover:-translate-y-0.5">
+                  <GithubIcon className="size-4" /> View Project
+                </a>
+              ) : (
+                <p className="mt-auto inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-semibold text-muted-foreground">
+                  <FileText className="size-4" /> Dashboards available on request
+                </p>
+              )}
             </div>
           </article>
         ))}
