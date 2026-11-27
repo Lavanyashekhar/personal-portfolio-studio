@@ -1,3 +1,5 @@
+import resumePdf from "@/assets/Lavanya_A_Resume_Combined.pdf.asset.json";
+
 // Edit this file to update portfolio content.
 export const profile = {
   name: "Lavanya A",
@@ -9,7 +11,8 @@ export const profile = {
   email: "lavanyashekhar909@gmail.com",
   linkedin: "https://linkedin.com/in/lavanya-a-b0759b2a0",
   github: "https://github.com/Lavanyashekhar",
-  resume: "", // set to a PDF URL once uploaded
+  resume: resumePdf.url,
+  resumeFileName: "Lavanya_A_Resume_Combined.pdf",
   paper: "https://jetir.org/papers/JETIRGX06046.pdf",
 };
 

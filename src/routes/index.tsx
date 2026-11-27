@@ -67,7 +67,7 @@ function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href={resumeHref} target="_blank" rel="noreferrer" className="hidden items-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-elegant transition-transform hover:-translate-y-0.5 sm:inline-flex">
+          <a href={resumeHref} download={profile.resumeFileName} className="hidden items-center gap-2 rounded-full bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-elegant transition-transform hover:-translate-y-0.5 sm:inline-flex">
             <Download className="size-4" /> Resume
           </a>
           <button onClick={() => setOpen(!open)} className="rounded-full p-2 text-heading hover:bg-accent lg:hidden" aria-label="Toggle menu">
@@ -80,7 +80,7 @@ function Header() {
           {nav.map((n) => (
             <a key={n} href={`#${id(n)}`} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-2 font-medium hover:bg-accent">{n}</a>
           ))}
-          <a href={resumeHref} target="_blank" rel="noreferrer" className="mt-2 flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-4 py-2 font-semibold text-primary-foreground">
+          <a href={resumeHref} download={profile.resumeFileName} className="mt-2 flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-4 py-2 font-semibold text-primary-foreground">
             <Download className="size-4" /> Download Resume
           </a>
         </nav>
@@ -124,7 +124,7 @@ function Hero() {
             <a href="#projects" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 font-semibold text-primary-foreground shadow-elegant transition-transform hover:-translate-y-0.5">
               View My Projects <ArrowRight className="size-4" />
             </a>
-            <a href={resumeHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 font-semibold text-heading transition-colors hover:border-primary hover:text-primary">
+            <a href={resumeHref} download={profile.resumeFileName} className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 font-semibold text-heading transition-colors hover:border-primary hover:text-primary">
               <Download className="size-4" /> Download Resume
             </a>
             <div className="ml-1 flex gap-2">
