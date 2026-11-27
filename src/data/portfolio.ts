@@ -76,7 +76,7 @@ export const projects: readonly Project[] = [
     tech: ["Power BI", "Advanced Excel", "SQL", "Python"],
     desc: "Business case studies solved during the Mindcreative School data analytics course, turning retail, healthcare, HR and e-commerce data into interactive Power BI dashboards and presentation-ready insight decks.",
     features: [
-      "Six case studies: RetailMart, Hospital Patient Analytics, HR Analytics, E-commerce, BrightFuture Student, Sales Analytics",
+      "Case studies: RetailMart India sales, CityLife hospital patient analytics, HR analytics, e-commerce and BrightFuture student",
       "Power Query data cleaning and DAX measures for revenue, cost and profit",
       "Interactive Power BI dashboards, each published with a PDF summary",
       "Insights presented through PowerPoint decks for each case study",
