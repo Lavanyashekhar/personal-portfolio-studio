@@ -48,10 +48,10 @@ export const internships = [
 export const projects = [
   {
     name: "Emotion-Based Music Recommendation System",
-    tech: ["Python", "Machine Learning", "Signal Processing", "Audio Processing"],
-    desc: "A machine learning application that analyzes audio input and identifies emotional states using speech features such as MFCC, pitch, and energy, then recommends music that fits the detected mood.",
-    features: ["Audio input and processing", "Emotion classification", "Mood-based music recommendation", "Personalized suggestions"],
-    link: "https://github.com/Lavanyashekhar",
+    tech: ["Python", "Machine Learning", "React", "Vite", "Audio Processing"],
+    desc: "A machine learning application that analyzes audio input and identifies emotional states using speech features such as MFCC, pitch, and energy, then recommends music that fits the detected mood. The React interface lets you upload a clip, read the detected emotion on a gauge, and steer the playlist toward a target mood.",
+    features: ["Audio upload with MFCC/spectrogram emotion detection", "Emotion gauge with confidence score", "Mood path: detected mood toward a chosen target mood", "Mood-matched playlist with thumbs-up feedback signals"],
+    link: "https://github.com/Lavanyashekhar/Emotion-based-music-recommandation-system",
     visual: "audio",
   },
   {
